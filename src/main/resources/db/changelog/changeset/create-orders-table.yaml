@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-orders
+      author: Anastasiia
+      changes:
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: userid
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: user_id
+                    references: users(id)
+              - column:
+                  name: itemid
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: item_id
+                    references: items(id)
+              - column:
+                  name: completed
+                  type: boolean
+                  constraints:
+                    nullable: false
