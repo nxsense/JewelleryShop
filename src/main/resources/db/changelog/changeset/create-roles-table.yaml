@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-roles
+      author: Anastasiia
+      changes:
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: name
+                  type: varchar(45)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+  - changeSet:
+      id: create-user-roles
+      author: Anastasiia
+      changes:
+        - createTable:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: userid
+                    references: users(id)
+              - column:
+                  name: roleid
+                  type: bigint
+                  constraints:
+                    foreignKeyName: role_id
+                    references: roles(id)
+  - changeSet:
+      id: insert-roles
+      author: Anastasiia
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: "name"
+                  value: "ROLE_USER"
+              - column:
+                  name: "name"
+                  value: "ROLE_ADMIN"
+              - column:
+                  name: "name"
+                  value: "ROLE_GUEST"

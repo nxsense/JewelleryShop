@@ -5,3 +5,5 @@ databaseChangeLog:
       file: db/changelog/changeset/create-items-table.yaml
   - include:
       file: db/changelog/changeset/create-orders-table.yaml
+  - include:
+      file: db/changelog/changeset/create-roles-table.yaml

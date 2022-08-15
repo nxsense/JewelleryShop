@@ -18,34 +18,22 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue
-    int id;
+    Long id;
 
     @Column(name = "name", nullable = false)
     String name;
     @Column(name = "surname", nullable = false)
     String surname;
     @Column(name = "email", nullable = false, unique = true)
-
     String email;
     @Column(name = "password", nullable = false)
     String password;
     @Column(name = "username", nullable = false, unique = true)
     String username;
 
-    private String roles;
-    private String permissions;
-
-    public List<String> getRoleList(){
-        if(this.roles.length() > 0){
-            return Arrays.asList(this.roles.split(","));
-        }
-        return new ArrayList<>();
-    }
-
-    public List<String> getPermissionList(){
-        if(this.permissions.length() > 0){
-            return Arrays.asList(this.permissions.split(","));
-        }
-        return new ArrayList<>();
-    }
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable (name = "user_roles",
+    joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+    inverseJoinColumns = {@JoinColumn(name = "roleid", referencedColumnName = "id")})
+    private List<Role> roles;
 }
