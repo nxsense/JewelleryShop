@@ -26,8 +26,12 @@ public class JwtTokenProvider {
     @Value("${jwt.token.expired}")
     private long validity;
 
+    private final UserDetailsService userDetailsService;
+
     @Autowired
-    private UserDetailsService userDetailsService;
+    public JwtTokenProvider(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
@@ -72,16 +76,12 @@ public class JwtTokenProvider {
         }
         return null;
      }
-     public boolean validateToken (String token) throws JwtAuthentificationException {
+     public boolean validateToken (String token) throws JwtAuthenticationException {
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
-            if(claims.getBody().getExpiration().before(new Date())){
-                return false;
-            }
-
-            return true;
+            return !claims.getBody().getExpiration().before(new Date());
         } catch (JwtException | IllegalArgumentException e){
-            throw new JwtAuthentificationException("JWT is expired or invalid");
+            throw new JwtAuthenticationException("JWT is expired or invalid");
         }
      }
      private List<String> getRoleNames(List<Role> userRoles){

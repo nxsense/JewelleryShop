@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-users
+      author: Anastasiia
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: name
+                  type: varchar(45)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: surname
+                  type: varchar(45)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(45)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: varchar(45)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(45)
+                  constraints:
+                    nullable: false
+                    unique: true
