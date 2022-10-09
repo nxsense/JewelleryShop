@@ -1,6 +1,5 @@
 package config;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +10,12 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import security.JwtConfigurer;
 import security.JwtTokenProvider;
 
+/**
+ * Configuration of security part
+ *
+ * @author author
+ * @version 1.0
+ */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final JwtTokenProvider jwtTokenProvider;

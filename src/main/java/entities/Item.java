@@ -6,6 +6,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
 
+/**
+ * Item entity
+ *
+ * @author author
+ * @version 1.0
+ */
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

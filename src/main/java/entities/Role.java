@@ -5,6 +5,12 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * User roles
+ *
+ * @author author
+ * @version 1.0
+ */
 @Entity
 @Table(name = "roles")
 @Data

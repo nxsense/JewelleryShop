@@ -1,4 +1,4 @@
-package RestControllers;
+package restControllers;
 
 import dto.AuthenticationRequestDto;
 import entities.User;
@@ -18,6 +18,10 @@ import service.UserService;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author author
+ * @version 1.0
+ */
 @RestController
 @RequestMapping(value = "/api/auth/")
 public class AuthenticationRestController {
@@ -25,12 +29,23 @@ public class AuthenticationRestController {
     private final JwtTokenProvider jwtTokenProvider;
     private final UserService userService;
 
+    /**
+     *
+     * @param authenticationManager
+     * @param jwtTokenProvider
+     * @param userService
+     */
     public AuthenticationRestController(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
         this.userService = userService;
     }
 
+    /**
+     * Endpoint for users to log in
+     *
+     * @param requestDto authentication dto
+     */
     @PostMapping("login")
     public ResponseEntity login (@RequestBody AuthenticationRequestDto requestDto) {
         try {

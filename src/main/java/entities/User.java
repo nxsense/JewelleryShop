@@ -4,10 +4,14 @@ package entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+/**
+ * User entity
+ *
+ * @author author
+ * @version 1.0
+ */
 @Entity
 @Getter
 @Setter
@@ -32,8 +36,8 @@ public class User {
     String username;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable (name = "user_roles",
-    joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-    inverseJoinColumns = {@JoinColumn(name = "roleid", referencedColumnName = "id")})
+    @JoinTable(name = "user_roles",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "roleid", referencedColumnName = "id")})
     private List<Role> roles;
 }

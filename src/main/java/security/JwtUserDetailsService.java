@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 import repository.UserRepository;
 import security.JwtUserDetails;
 
+/**
+ * @author author
+ * @version 1.0
+ */
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 

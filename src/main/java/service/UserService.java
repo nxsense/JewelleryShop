@@ -1,9 +1,12 @@
 package service;
 
 import entities.User;
-
+/**
+ * @author author
+ * @version 1.0
+ */
 public interface UserService {
     User findByUsername(String username);
     User findById(Long id);
-    User createUser(User user);
+    void createUser(User user);
 }

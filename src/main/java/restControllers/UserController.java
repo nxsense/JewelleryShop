@@ -1,4 +1,4 @@
-package RestControllers;
+package restControllers;
 
 import dto.OrderDto;
 import dto.UserDto;
@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import service.OrderService;
 import service.UserService;
 
+/**
+ * REST-controller for users actions like ordering items, registration etc.
+ * @author author
+ * @version 1.0
+ */
 @RestController
 @RequestMapping(value = "/api/profile")
 public class UserController {
@@ -26,6 +31,11 @@ public class UserController {
         this.orderService = orderService;
     }
 
+    /**
+     * Registering some new user
+     *
+     * @param user adding new user with needed information
+     */
     @PutMapping(value = "register")
     public ResponseEntity<UserDto> registration(@RequestBody User user){
         if(user == null){
@@ -38,6 +48,11 @@ public class UserController {
         return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
     }
 
+    /**
+     * Registering new order
+     *
+     * @param order adding new order with needed information
+     */
     @PutMapping(value = "order")
     public ResponseEntity<OrderDto> newOrder(@RequestBody Order order){
         if(order == null){

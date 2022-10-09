@@ -4,11 +4,14 @@ import entities.Role;
 import entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import security.JwtUserDetails;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author author
+ * @version 1.0
+ */
 public class JwtUserFactory {
     public JwtUserFactory() {
     }

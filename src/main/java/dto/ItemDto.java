@@ -4,6 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import entities.Item;
 import lombok.Data;
 
+/**
+ * DTO for items
+ *
+ * @author author
+ * @version 1.0
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ItemDto {
@@ -14,17 +20,7 @@ public class ItemDto {
     private float weight;
     private boolean available;
 
-    public Item toItem(){
-        Item item = new Item();
-        item.setId(id);
-        item.setType(type);
-        item.setPrice(price);
-        item.setMetal(metal);
-        item.setWeight(weight);
-        item.setAvailable(available);
-        return item;
-    }
-    public static ItemDto fromItem(Item item){
+    public static ItemDto fromItem(Item item) {
         ItemDto itemDto = new ItemDto();
         itemDto.setId(item.getId());
         itemDto.setType(item.getType());
@@ -33,5 +29,16 @@ public class ItemDto {
         itemDto.setWeight(item.getWeight());
         itemDto.setAvailable(item.isAvailable());
         return itemDto;
+    }
+
+    public Item toItem() {
+        Item item = new Item();
+        item.setId(id);
+        item.setType(type);
+        item.setPrice(price);
+        item.setMetal(metal);
+        item.setWeight(weight);
+        item.setAvailable(available);
+        return item;
     }
 }

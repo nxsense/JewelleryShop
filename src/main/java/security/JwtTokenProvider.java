@@ -19,6 +19,10 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author author
+ * @version 1.0
+ */
 @Component
 public class JwtTokenProvider {
     @Value("${jwt.token.secret}")
@@ -35,10 +39,7 @@ public class JwtTokenProvider {
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        return passwordEncoder;
-
-
+        return new BCryptPasswordEncoder();
     }
     @PostConstruct
     protected void init(){
@@ -86,9 +87,8 @@ public class JwtTokenProvider {
      }
      private List<String> getRoleNames(List<Role> userRoles){
          List<String> result = new ArrayList<>();
-         userRoles.forEach(role -> {
-             result.add(role.getName());
-         });
+         userRoles.forEach(role ->
+             result.add(role.getName()));
          return result;
      }
 }

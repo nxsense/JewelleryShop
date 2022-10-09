@@ -1,4 +1,4 @@
-package RestControllers;
+package restControllers;
 
 import dto.ItemDto;
 import dto.OrderDto;
@@ -17,6 +17,11 @@ import service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * REST-Controller for admin's actions like adding/deleting items or managing orders
+ * @author author
+ * @version 1.0
+ */
 @RestController
 @RequestMapping(value = "/api/admin/")
 public class AdminController {
@@ -25,6 +30,13 @@ public class AdminController {
     private final OrderService orderService;
     private final ItemService itemService;
 
+    /**
+     * AdminController`s constructor
+     *
+     * @param userService user service for using its methods
+     * @param orderService orders service for using its methods
+     * @param itemService items service for using its methods
+     */
     @Autowired
     public AdminController(UserService userService, OrderService orderService, ItemService itemService) {
         this.userService = userService;
@@ -32,6 +44,11 @@ public class AdminController {
         this.itemService = itemService;
     }
 
+    /**
+     * Endpoint for searching certain user
+     *
+     * @param id users id for searching them
+     */
     @GetMapping(value = "users/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable(name = "id") Long id) {
         User user = userService.findById(id);
@@ -45,6 +62,10 @@ public class AdminController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint for adding some items
+     *
+     */
     @PutMapping(value = "items/add")
     public ResponseEntity<ItemDto> addIItem(@RequestBody Item item){
         if(item == null){
@@ -55,6 +76,11 @@ public class AdminController {
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
+    /**
+     * Endpoint for deleting items
+     *
+     * @param id for searching items to delete
+     */
     @DeleteMapping(value = "items/delete/{id}")
     public ResponseEntity<ItemDto> deleteItem(@PathVariable(name = "id") Long id){
         Item item = itemService.findById(id);
@@ -65,6 +91,10 @@ public class AdminController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    /**
+     * Endpoint for searching certain users orders
+     * @param id finding some user
+     */
     @GetMapping(value = "users/orders/{id}")
     public ResponseEntity<List<OrderDto>> getUsersOrders(@PathVariable(name = "id") int id){
         List<Order> orders = orderService.findOrdersByUserId(id);
